@@ -1,0 +1,111 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    background-color: #333;
+    height: 100vh;
+}
+*{
+    padding: 0%;
+    margin: 0%;
+}
+#game{
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid white;
+    
+}
+.square {
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+    border: 1px solid white;
+}
+.circle{
+    box-sizing: border-box;
+    border: 19px solid blue;
+    width: 99px;
+    height: 99px;
+    border-radius: 50%;
+}
+.cross{
+    box-sizing: border-box;
+    width: 99px;
+    height: 99px;
+    /* background-color: white; */
+    position: relative;
+    transform: rotate(45deg);
+}
+.cross::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    background-color: red;
+    height: 20px;
+    transform: translateY(-50%);
+}
+.cross::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    background-color: red;
+    width: 20px;
+    transform: translateX(-50%);
+}
+#events{
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: white;
+    text-shadow: 0px 0px 15px white;
+}
+
+.circle-won{
+    animation: circleWon 0.3s alternate infinite;
+}
+@keyframes circleWon {
+    from{
+        text-shadow: 0px 0px 30px white;
+        color: blue;
+        
+    }to{
+        text-shadow: 0px 0px 30px blue;
+        color: white;
+    }
+    
+}
+.cross-won{
+    animation: crossWon 0.3s alternate-reverse infinite;
+}
+@keyframes crossWon {
+    from{
+        text-shadow: 0px 0px 5px white;
+        color: red;
+    }to{
+        text-shadow: 0px 0px 30px red;
+        color: white;
+    }
+    
+}
+.reload{
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -0.5px;
+    background-color: red;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+.reload:hover{
+    opacity: 1;
+}
