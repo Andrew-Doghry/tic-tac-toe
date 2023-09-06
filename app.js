@@ -2,15 +2,19 @@ const gameBoard= document.querySelector('#game')
 const events= document.querySelector('#events')
 const reload = document.querySelector('.reload')
 const arr = new Array(9).fill(0,0,9)
+console.log(arr)
 let role = 'circle'
 events.textContent = `${role} goes first !`
-arr.forEach((e,index)=>{
-    const square = document.createElement('div');
-    square.classList.add('square')
-    square.id=index
-    gameBoard.append(square)
-    square.addEventListener('click',addGo)
-})
+setTimeout(() => {
+    
+    arr.forEach((e,index)=>{
+        const square = document.createElement('div');
+        square.classList.add('square')
+        square.id=index
+        gameBoard.append(square)
+        square.addEventListener('click',addGo)
+    })
+}, 300);
 
 function addGo(e){
     const goItem = document.createElement('div');
@@ -20,6 +24,7 @@ function addGo(e){
     e.target.removeEventListener('click',addGo)
     events.textContent = `${role} goes !`
     checkWins()
+    NoWins()
 }
 let winRoles = [
     [0,1,2],[3,4,5],[6,7,8],
@@ -66,3 +71,18 @@ reload.onclick=function(){
         }
     }
 }
+function NoWins(){
+    allSquares= document.querySelectorAll('.square');
+    
+    noWins =Array(...allSquares).every(square=>{
+        return square.firstChild ? true: false;
+    })
+    if(noWins){
+        events.textContent = `no one won ! `
+        reload.textContent = 'AGAIN'       
+        events.classList.add('no-one');
+    }
+}
+
+
+
